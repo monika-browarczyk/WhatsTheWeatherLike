@@ -13,4 +13,4 @@ public class WeatherDataCatalog implements ICatalogData {
     private ForecastRepository forecastRepository;
     private MainInfoRepository mainInfoRepository;
     private WeatherDataRepository weatherDataRepository;
-    }
+}

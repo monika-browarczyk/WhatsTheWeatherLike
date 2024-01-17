@@ -9,7 +9,7 @@ public class WeatherClientConfiguration {
     public IWeatherClientSettings getSettings(
             @Value("${themoviedb.api.key}") String apiKey,
             @Value("${themoviedb.api.host}") String host,
-            @Value("${themoviedb.api.version}") int apiVersion,
+            @Value("${themoviedb.api.version}") double apiVersion,
             @Value("${themoviedb.api.units}") String apiUnits,
             @Value("${themoviedb.api.lang}") String apiLang) {
         return new WeatherClientSettings();

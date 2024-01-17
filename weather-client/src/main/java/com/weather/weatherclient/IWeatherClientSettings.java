@@ -4,22 +4,21 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 public interface IWeatherClientSettings {
     String getApiKey();
-
     String getBaseUrl();
-
-    int getApiVersion();
-
+    double getApiVersion();
     String getApiUnits();
     String getApiLang();
 
-    default UriComponentsBuilder getUrlBuilder(){
+    default UriComponentsBuilder getUrlBuilder(double lat, double lon) {
         return UriComponentsBuilder
                 .newInstance()
                 .scheme("http")
                 .host(getBaseUrl())
-                .pathSegment(getApiVersion() + "")
-                .queryParam("api_key", getApiKey())
-                .pathSegment("units", getApiUnits());
-
+                .pathSegment("data", String.valueOf(getApiVersion()), "forecast")
+                .queryParam("lat", lat)
+                .queryParam("lon", lon)
+                .queryParam("apiid", getApiKey())
+                .queryParam("units", getApiUnits())
+                .queryParam("lang", getApiLang());
     }
 }

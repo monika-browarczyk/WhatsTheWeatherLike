@@ -2,6 +2,7 @@ package com.weather.updater.controller;
 
 import com.weather.data.model.City;
 import com.weather.data.repositories.CityRepository;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,5 +39,17 @@ public class CityController {
         cityRepository.deleteById(id);
     }
 
-    // Dodaj inne metody obsługujące zapytania dotyczące miast
+    @PutMapping("/{id}")
+    public City updateCity(@PathVariable Long id, @RequestBody City city) {
+        City cityToUpdate = cityRepository.findById(id).orElse(null);
+        if (cityToUpdate != null) {
+            cityToUpdate.setName(city.getName());
+            cityToUpdate.setCountry(city.getCountry());
+            cityToUpdate.setLatitude(city.getLatitude());
+            cityToUpdate.setLongitude(city.getLongitude());
+            return cityRepository.save(cityToUpdate);
+        } else {
+            return null;
+        }
+    }
 }

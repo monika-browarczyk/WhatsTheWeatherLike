@@ -1,11 +1,12 @@
 package com.weather.contract;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
-@Builder
+@Setter
 public class WeatherDataDto {
     @JsonProperty("main")
     private MainInfoDto mainInfoDto;
@@ -13,4 +14,5 @@ public class WeatherDataDto {
     @JsonProperty("pop")
     private Double precipitationProbability;
     private Double rain;
+
 }
